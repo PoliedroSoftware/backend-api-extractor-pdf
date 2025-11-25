@@ -1,0 +1,26 @@
+pluginManagement {
+    repositories {
+        //mavenLocal()
+        //maven { url = '...' }
+        gradlePluginPortal()
+    }
+}
+
+buildCache {
+    local {
+        directory = new File(rootDir, 'build-cache')
+    }
+}
+
+rootProject.name = 'backend-api-extractor-pdf'
+
+include ':app-service'
+include ':model'
+include ':usecase'
+include ':infrastructure:entry-points:api-rest'
+include ':infrastructure:driven-adapters:pdf'
+project(':app-service').projectDir = file('./applications/app-service')
+project(':model').projectDir = file('./domain/model')
+project(':usecase').projectDir = file('./domain/usecase')
+project(':infrastructure:entry-points:api-rest').projectDir = file('./infrastructure/entry-points/api-rest')
+project(':infrastructure:driven-adapters:pdf').projectDir = file('./infrastructure/driven-adapters/pdf')
