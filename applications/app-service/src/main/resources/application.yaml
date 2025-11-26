@@ -12,3 +12,13 @@ spring:
       path: /h2
   profiles:
     include:
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: when-authorized
+
