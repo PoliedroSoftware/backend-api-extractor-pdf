@@ -1,0 +1,14 @@
+plugins {
+    id 'java'
+}
+
+// This module contains API controllers and DTOs for the REST entry-point.
+
+dependencies {
+    implementation project(':model')
+    implementation project(':usecase')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
+    implementation 'io.swagger.core.v3:swagger-annotations:2.2.10'
+}
+
