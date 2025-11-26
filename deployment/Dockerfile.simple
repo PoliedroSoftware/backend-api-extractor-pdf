@@ -1,0 +1,27 @@
+# Dockerfile simple - usa el JAR ya compilado (más rápido para desarrollo)
+FROM eclipse-temurin:24-jre-alpine
+WORKDIR /app
+
+# Crear usuario no-root
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+
+# Copiar el JAR (debe estar compilado previamente con: ./gradlew :app-service:bootJar)
+COPY applications/app-service/build/libs/backend-api-extractor-pdf.jar app.jar
+
+# Variables de entorno
+ENV JAVA_OPTS="-XX:+UseContainerSupport -XX:MaxRAMPercentage=70 -Djava.security.egd=file:/dev/./urandom"
+ENV SERVER_PORT=8080
+
+# Exponer puerto
+EXPOSE 8080
+
+# Cambiar a usuario no-root
+USER appuser
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=60s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://localhost:8080/actuator/health || exit 1
+
+# Punto de entrada
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]
+
