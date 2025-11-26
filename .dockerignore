@@ -1,0 +1,50 @@
+# Git
+.git
+.gitignore
+
+# Gradle
+.gradle
+build
+!gradle/wrapper/gradle-wrapper.jar
+
+# IDE
+.idea
+*.iml
+*.iws
+.vscode
+.settings
+.classpath
+.project
+bin
+
+# Logs
+*.log
+logs
+
+# Test reports
+**/build/reports
+**/build/test-results
+
+# Docker
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# Documentation
+*.md
+!README.md
+
+# Cache
+build-cache
+.cache
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Otros
+*.pdf
+*.txt
+app-output.log
+app-error.log
+
